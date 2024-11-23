@@ -1,1 +1,14 @@
+# Archivos de configuración de entornos virtuales
+venv/
+env/
+
+# Archivos de caché de Python
 __pycache__/
+*.py[cod]
+
+# Archivos de configuración del editor
+.vscode/
+.idea/
+
+# Archivos de prueba
+*.log
