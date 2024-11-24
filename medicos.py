@@ -12,7 +12,7 @@ class Medico:
 
     def actualizar_medico(self, medico_id, nombre, apellido, telefono, especialidad):
         query = "UPDATE Medicos SET nombre=%s, apellido=%s, telefono=%s, especialidad=%s WHERE medico_id=%s"
-        valores = (nombre, apellido, telefono, especialidad)
+        valores = (nombre, apellido, telefono, especialidad, medico_id)
         self.db.ejecutar(query, valores)
         return "Médico actualizado con éxito."
 

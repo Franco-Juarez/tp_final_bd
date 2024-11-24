@@ -39,7 +39,7 @@ def mostrar_programar_turno():
         hora = hora_entry.get()
 
         try:
-            mensaje = turno_db.programar_turno(id_paciente, id_medico, fecha, hora)
+            mensaje = turno_db.registrar_turno(id_paciente, id_medico, fecha, hora)
             messagebox.showinfo("Éxito", mensaje)
             ventana.destroy()
         except Exception as e:
@@ -166,6 +166,22 @@ def mostrar_ver_turnos():
     except Exception as e:
         messagebox.showerror("Error", f"No se pudieron cargar los turnos: {e}")
 
+def mostrar_reporte_turnos():
+    ventana = tk.Toplevel()
+    ventana.title("Reporte de turnos")
+    ventana.geometry("600x400")
+
+    listbox = tk.Listbox(ventana, width=100)
+    listbox.pack(pady=10)
+    
+    try:
+        turnos = turno_db.reporte_medicos_con_mas_turnos()
+        for turno in turnos:
+            listbox.insert(tk.END, f"Médico: {turno[0]} {turno[1]} - Total de turnos: {turno[2]}")
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudieron cargar los turnos: {e}")
+
+    
 # Ventana principal
 root = tk.Tk()
 root.title("Gestión de Turnos")
@@ -179,6 +195,8 @@ ttk.Button(root, text="Programar Turno", command=mostrar_programar_turno, style=
 ttk.Button(root, text="Actualizar Turno", command=mostrar_actualizar_turno, style="Custom.TButton").grid(row=1, column=0, pady=10, padx=10, sticky="nsew")
 ttk.Button(root, text="Cancelar Turno", command=mostrar_cancelacion_turnos, style="Custom.TButton").grid(row=2, column=0, pady=10, padx=10, sticky="nsew")
 ttk.Button(root, text="Ver Turnos", command=mostrar_ver_turnos, style="Custom.TButton").grid(row=3, column=0, pady=10, padx=10, sticky="nsew")
+ttk.Button(root, text="Reporte de Turnos", command=mostrar_reporte_turnos, style="Custom.TButton").grid(row=4, column=0, pady=10, padx=10, sticky="nsew")
+
 
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)

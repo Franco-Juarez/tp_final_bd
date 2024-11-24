@@ -59,6 +59,10 @@ def mostrar_registro_paciente():
   ttk.Label(ventana, text="Dirección:", style="TLabel").grid(row=4, column=0, pady=5)
   direccion_entry = ttk.Entry(ventana, style="TEntry")
   direccion_entry.grid(row=4, column=1, pady=5)
+  
+  ttk.Label(ventana, text="Obra Social:", style="TLabel").grid(row=5, column=0, pady=5)
+  obra_social_entry = ttk.Entry(ventana, style="TEntry")
+  obra_social_entry.grid(row=5, column=1, pady=5)
 
   def registrar_paciente():
     nombre = nombre_entry.get()
@@ -66,14 +70,15 @@ def mostrar_registro_paciente():
     telefono = telefono_entry.get()
     email = email_entry.get()
     direccion = direccion_entry.get()
+    obra_social = obra_social_entry.get()
 
-    paciente_db.registrar_paciente(nombre, apellido, telefono, email, direccion)
+    paciente_db.registrar_paciente(nombre, apellido, telefono, email, direccion, obra_social)
     messagebox.showinfo("Éxito", "Paciente registrado con éxito.")
     ventana.destroy()
 
   ttk.Button(
     ventana, text="Registrar", command=registrar_paciente, style="Custom.TButton"
-  ).grid(row=5, columnspan=2, pady=10)
+  ).grid(row=6, columnspan=2, pady=10)
 
 # Crear ventana de actualización de paciente
 def mostrar_actualizacion_paciente():
@@ -127,6 +132,11 @@ def mostrar_actualizacion_paciente():
     direccion_entry = ttk.Entry(actualizacion_ventana, style="TEntry")
     direccion_entry.insert(0, paciente_actual[5])
     direccion_entry.grid(row=4, column=1, pady=5)
+    
+    ttk.Label(actualizacion_ventana, text="Obra Social:", style="TLabel").grid(row=5, column=0)
+    obra_social_entry = ttk.Entry(actualizacion_ventana, style="TEntry")
+    obra_social_entry.insert(0, paciente_actual[6])
+    obra_social_entry.grid(row=5, column=1, pady=5)
 
     def guardar_cambios():
       nombre = nombre_entry.get()
@@ -134,12 +144,13 @@ def mostrar_actualizacion_paciente():
       telefono = telefono_entry.get()
       email = email_entry.get()
       direccion = direccion_entry.get()
+      obra_social = obra_social_entry.get()
       
-      paciente_db.actualizar_paciente(paciente_id, nombre, apellido, telefono, email, direccion)
+      paciente_db.actualizar_paciente(paciente_id, nombre, apellido, telefono, email, direccion, obra_social)
       messagebox.showinfo("Éxito", "Paciente actualizado con éxito.")
       actualizacion_ventana.destroy()
 
-    ttk.Button(actualizacion_ventana, text="Guardar Cambios", command=guardar_cambios, style="Custom.TButton").grid(row=5, columnspan=2)
+    ttk.Button(actualizacion_ventana, text="Guardar Cambios", command=guardar_cambios, style="Custom.TButton").grid(row=6, columnspan=2)
 
   ttk.Button(ventana, text="Actualizar Paciente Seleccionado", command=actualizar_paciente, style="Custom.TButton").pack()
 
