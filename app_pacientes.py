@@ -6,7 +6,7 @@ from pacientes import Paciente
 from conexion import BaseDeDatos
 
 # Conectar a la base de datos
-db = BaseDeDatos("localhost", "root", "X1arQbK4K236OnY", "base_datos_prueba")
+db = BaseDeDatos("localhost", "root", "EsromzN4nJWyr8X", "sistema_hospital")
 db.conectar()
 paciente_db = Paciente(db)
 

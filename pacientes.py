@@ -4,15 +4,15 @@ class Paciente:
   def __init__(self, db):
     self.db = db
 
-  def registrar_paciente(self, nombre, apellido, telefono, email, direccion):
-    query = "INSERT INTO Pacientes (nombre, apellido, telefono, email, direccion) VALUES (%s, %s, %s, %s, %s)"
-    valores = (nombre, apellido, telefono, email, direccion)
+  def registrar_paciente(self, nombre, apellido, telefono, email, direccion, obra_social):
+    query = "INSERT INTO Pacientes (nombre, apellido, telefono, email, direccion) VALUES (%s, %s, %s, %s, %s, %s)"
+    valores = (nombre, apellido, telefono, email, direccion, obra_social)
     self.db.ejecutar(query, valores)
     return "Paciente registrado con éxito."
 
-  def actualizar_paciente(self, paciente_id, nombre, apellido, telefono, email, direccion):
-    query = "UPDATE Pacientes SET nombre=%s, apellido=%s, telefono=%s, email=%s, direccion=%s WHERE paciente_id=%s"
-    valores = (nombre, apellido, telefono, email, direccion, paciente_id)
+  def actualizar_paciente(self, paciente_id, nombre, apellido, telefono, email, direccion, obra_social):
+    query = "UPDATE Pacientes SET nombre=%s, apellido=%s, telefono=%s, email=%s, direccion=%s obra_social=%s WHERE paciente_id=%s"
+    valores = (nombre, apellido, telefono, email, direccion, obra_social, paciente_id)
     self.db.ejecutar(query, valores)
     return "Paciente actualizado con éxito."
 
